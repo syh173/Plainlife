@@ -85,12 +85,9 @@ public class MainActivity extends Activity {//使用点击监听器
 						//String str = "";
 						//int number = 0;
 						try {
-							Scanner Fr =new Scanner (new File(dbpath));
-						  while (Fr.hasNext())	
-							content+=Fr.nextLine();
+							content=readFile(dbpath);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
-							Log.v("ff","IoException");
 							e.printStackTrace();
 						}
 						Intent intent = new Intent();
