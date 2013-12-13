@@ -56,7 +56,7 @@ public class ShowContent extends Activity{
        		 Content.add(temp);
        	 }
         }
-   
+      
         tv.setText(Content.get(0));
         	//int number = (int)(Math.random()*(Content.size()-1));
         
