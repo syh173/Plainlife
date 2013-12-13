@@ -1,4 +1,0 @@
-Plainlife
-=========
-
-a class project
