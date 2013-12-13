@@ -60,7 +60,7 @@ public class ClipCatching extends Service {
 	        // TODO Auto-generated method stub   
 	        Log.i("Service", "Service------->onStartCommand");  
 	        //这里的返回有三种类型，可以自己手动返回。return XXXXX；   
-	        final File db= new File(dbpath);
+	       // final File db= new File(dbpath);
 
 		     final ClipboardManager cm =(ClipboardManager) getSystemService(CLIPBOARD_SERVICE);;
 			  final AlertDialog confirm= new AlertDialog.Builder(this)   
@@ -71,15 +71,16 @@ public class ClipCatching extends Service {
 				public void onClick(DialogInterface arg0, int arg1) {
 					// TODO Auto-generated method stub
 
-					BufferedWriter fwriter;
+					
 					try {
-						fwriter = new BufferedWriter(new FileWriter(db,true));
-					SimpleDateFormat   formatter   =   new   SimpleDateFormat   ("yyyy年MM月dd日   HH:mm:ss");     
+					//	fwriter = new BufferedWriter(new FileWriter(db,true));
+						FileOutputStream fwriter =openFileOutput(dbpath, MODE_PRIVATE|MODE_APPEND);   
+				    SimpleDateFormat   formatter   =   new   SimpleDateFormat   ("yyyy年MM月dd日   HH:mm:ss");     
 					 Date   curDate   =   new   Date(System.currentTimeMillis());//获取当前时间     
 					String   str   =   formatter.format(curDate);   
-					fwriter.append("##\r\n");
-					fwriter.append(str+"\r\n");
-					fwriter.append(cm.getText().toString()+"\r\n");
+					fwriter.write("##\r\n".getBytes());
+					fwriter.write((str+"\r\n").getBytes());
+					fwriter.write((cm.getText().toString()+"\r\n").getBytes());
 					fwriter.flush();
 					fwriter.close();
 					} catch (IOException e) {
